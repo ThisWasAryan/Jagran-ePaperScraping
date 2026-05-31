@@ -4,6 +4,8 @@ A completely browser-based, lightweight, and modern React web application to bro
 
 This project is a sister project to [HT-ePaperScraper](https://github.com/ThisWasAryan/HT-ePaperScraper), sharing the same minimalist design language, responsive typography, and CSS architecture to ensure a premium reading experience.
 
+[A Demonstration/Tutorial Video](https://youtu.be/HwQzwb3BFy4) *last updated on 01/06/2026*
+
 ## Features
 
 - **No Backend Required:** Leverages native browser CORS capabilities to scrape and fetch assets directly from Jagran's servers (`epaperapi.jagran.com`). No proxies needed!
