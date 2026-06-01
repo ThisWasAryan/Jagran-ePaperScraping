@@ -215,7 +215,7 @@ By leveraging native CORS headers, identifying hidden DOM elements, and decipher
 
 ## Disclaimer
 
-This project is an independent viewer and is not affiliated with, endorsed by, or associated with Hindustan Times or any of its parent organizations.
+This project is an independent viewer and is not affiliated with, endorsed by, or associated with Dainik Jagran or any of its parent organizations.
 
 **Jagran-ePaperScraping does not host, store, redistribute, modify, or republish newspaper pages on its own servers.** The application merely provides access to publicly available resources that are already accessible through the official publisher infrastructure.
 
