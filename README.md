@@ -29,7 +29,6 @@ Here is the exact breakdown of supported regions:
 - **Uttarakhand:** 13 editions
 - **Jammu & Kashmir:** 4 editions
 - **West Bengal:** 4 editions
-- **Himachal Pradesh:** (Monitored for dynamic availability)
 
 ---
 
