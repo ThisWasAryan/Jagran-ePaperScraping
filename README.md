@@ -15,55 +15,35 @@ This project is a sister project to [HT-ePaperScraper](https://github.com/ThisWa
 - **Direct Downloads:** Native download functionality pointing straight to the uncompressed, original image files.
 - **GitHub Pages Ready:** Configured to instantly deploy as a static Vite application via GitHub Actions.
 
-## Supported States
-Currently tracks and supports all editions across all states which are as follows:
-- Delhi
-- Uttar Pradesh
-- Haryana
-- Uttarakhand
-- Bihar
-- Jharkhand
-- Punjab
-- Jammu & Kashmir
-- Himachal Pradesh
-- West Bengal
+## Extensive Edition Coverage
 
-## Technology Stack
-- **Framework:** React + TypeScript + Vite
-- **Styling:** Vanilla CSS (Ported HT-ePaperScraper design system)
-- **Icons:** Lucide React
-- **Zoom/Pan:** `react-zoom-pan-pinch`
-- **Deployment:** GitHub Pages & Actions
+The discovery engine dynamically scrapes the latest available cities and editions natively in the browser. In total, the viewer is capable of accessing **218 distinct daily editions** across **10 states**. 
 
-## Getting Started
+Here is the exact breakdown of supported regions:
+- **Uttar Pradesh:** 83 editions 
+- **Bihar:** 36 editions
+- **Jharkhand:** 21 editions
+- **Punjab:** 21 editions
+- **Delhi:** 20 editions
+- **Haryana:** 16 editions
+- **Uttarakhand:** 13 editions
+- **Jammu & Kashmir:** 4 editions
+- **West Bengal:** 4 editions
+- **Himachal Pradesh:** (Monitored for dynamic availability)
 
-### Prerequisites
-- Node.js 18+
+---
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/Jagran-ePaperScraping.git
-   cd Jagran-ePaperScraping
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
+<img width="1920" height="1080" alt="JTest1" src="https://github.com/user-attachments/assets/d66dff51-b4dd-4c24-ba74-5e2418496299" />
 
-### Building for Production
-To generate a production-ready build in the `dist` directory:
-```bash
-npm run build
-```
+*Web viewer interface showing access to all available cities and editions, demonstrating the platform's complete newspaper navigation capabilities.*
 
-## Deployment
-This repository includes a `.github/workflows/deploy.yml` workflow. 
-If you fork this repository to your own account under the exact name `Jagran-ePaperScraping` and enable GitHub Pages via GitHub Actions in your repository settings, the application will automatically deploy upon push to the `main` branch.
+
+<img width="1920" height="1080" alt="JTest2" src="https://github.com/user-attachments/assets/48a600af-2559-4fb3-ae32-927f3e13d9ea" />
+
+
+*Individual page viewer with high resolution image rendering, allowing users to view or download the highest quality page available.*
+
+---
 
 ## Technical Deep Dive: Building a Serverless React Scraper
 
@@ -212,6 +192,44 @@ The result is a lightning-fast, highly aesthetic ePaper viewer that runs 100% lo
 By leveraging native CORS headers, identifying hidden DOM elements, and deciphering Jagran's image quality routing, we bypassed the need for any backend infrastructure. The repository simply pushes to GitHub, compiles via Vite GitHub Actions, and deploys natively to GitHub Pages as a masterclass in static web scraping.
 
 ---
+
+## Technology Stack
+- **Framework:** React + TypeScript + Vite
+- **Styling:** Vanilla CSS (Ported HT-ePaperScraper design system)
+- **Icons:** Lucide React
+- **Zoom/Pan:** `react-zoom-pan-pinch`
+- **Deployment:** GitHub Pages & Actions
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/Jagran-ePaperScraping.git
+   cd Jagran-ePaperScraping
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Building for Production
+To generate a production-ready build in the `dist` directory:
+```bash
+npm run build
+```
+
+## Deployment
+This repository includes a `.github/workflows/deploy.yml` workflow. 
+If you fork this repository to your own account under the exact name `Jagran-ePaperScraping` and enable GitHub Pages via GitHub Actions in your repository settings, the application will automatically deploy upon push to the `main` branch.
+
 
 ## Disclaimer
 
