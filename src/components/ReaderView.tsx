@@ -67,7 +67,6 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
           </button>
           <div className="reader-page-info">
             <span className="reader-page-number serif">Page {currentPage.pageNumber} of {pages[pages.length - 1].pageNumber}</span>
-            <span className="reader-page-title">E-Paper Page</span>
           </div>
         </div>
 

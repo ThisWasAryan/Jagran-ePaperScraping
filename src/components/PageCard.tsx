@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Download, Maximize2 } from 'lucide-react';
 import type { PageData } from '../services/jagranApi';
 
@@ -8,8 +8,31 @@ interface PageCardProps {
 }
 
 export const PageCard: React.FC<PageCardProps> = ({ page, onOpenReader }) => {
+  const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        },
+        { rootMargin: '300px' }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    } else {
+      setIsVisible(true);
+    }
+  }, []);
 
   const handleDownload = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,21 +62,24 @@ export const PageCard: React.FC<PageCardProps> = ({ page, onOpenReader }) => {
   };
 
   return (
-    <div className="page-card">
+    <div className="page-card" ref={cardRef}>
       <div className="card-image-container" onClick={() => onOpenReader(page.pageNumber)}>
-        {!imageLoaded && <div className="skeleton" style={{ width: '100%', height: '100%', position: 'absolute' }} />}
-        <img
-          src={page.fullImageUrl}
-          alt={`Page ${page.pageNumber}`}
-          className="card-image"
-          onLoad={() => setImageLoaded(true)}
-          style={{ opacity: imageLoaded ? 1 : 0 }}
-        />
+        {!imageLoaded && <div className="skeleton" style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }} />}
+        {isVisible && (
+          <img
+            src={page.fullImageUrl}
+            alt={`Page ${page.pageNumber}`}
+            className="card-image"
+            loading="lazy"
+            decoding="async"
+            onLoad={() => setImageLoaded(true)}
+            style={{ opacity: imageLoaded ? 1 : 0 }}
+          />
+        )}
       </div>
       <div className="card-footer">
         <div className="card-info">
           <span className="card-page-num serif">Page {page.pageNumber}</span>
-          <span className="card-title">E-Paper Page</span>
         </div>
         <div className="card-actions">
           <button 

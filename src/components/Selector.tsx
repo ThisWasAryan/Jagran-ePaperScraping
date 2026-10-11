@@ -150,7 +150,11 @@ export const Selector: React.FC<SelectorProps> = ({
           }}
           disabled={isLoading || isFetchingCities || availableCities.length === 0}
         >
-          {availableCities.length === 0 ? <option value="">No cities found</option> : null}
+          {isFetchingCities ? (
+            <option value="">Loading cities...</option>
+          ) : availableCities.length === 0 ? (
+            <option value="">No cities found</option>
+          ) : null}
           {availableCities.map((city) => (
             <option key={city.name} value={city.name}>
               {city.name}
@@ -168,7 +172,11 @@ export const Selector: React.FC<SelectorProps> = ({
           onChange={(e) => onEditionIdChange(e.target.value)}
           disabled={isLoading || isFetchingCities || availableEditions.length === 0}
         >
-          {availableEditions.length === 0 ? <option value="">No editions found</option> : null}
+          {isFetchingCities ? (
+            <option value="">Loading editions...</option>
+          ) : availableEditions.length === 0 ? (
+            <option value="">No editions found</option>
+          ) : null}
           {availableEditions.map((edition) => (
             <option key={edition.id} value={edition.id}>
               {edition.name}
