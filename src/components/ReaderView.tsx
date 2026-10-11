@@ -103,12 +103,15 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
         )}
         
         <TransformWrapper
+          key={currentPage.pageNumber}
           initialScale={1}
-          minScale={0.5}
+          minScale={0.3}
           maxScale={5}
           centerOnInit={true}
+          centerZoomedOut={true}
+          limitToBounds={false}
           wheel={{ step: 0.1 }}
-          doubleClick={{ step: 3, mode: 'zoomIn' }}
+          doubleClick={{ step: 2, mode: 'zoomIn' }}
           panning={{ velocityDisabled: false }}
         >
           {({ zoomIn, zoomOut, resetTransform, setTransform, state }) => {
@@ -117,11 +120,13 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
               e.stopPropagation();
               const { scale, positionX, positionY } = state;
               
-              // Target step for single click
-              const step = 1.5;
-              const newScale = Math.min(scale * step, 5);
-              if (newScale === scale) return;
-          
+              // If already zoomed in, click resets to fit; otherwise zooms into click location
+              if (scale > 1.2) {
+                resetTransform();
+                return;
+              }
+
+              const newScale = 2.5;
               const wrapper = e.currentTarget.parentElement;
               if (!wrapper) return;
               const rect = wrapper.getBoundingClientRect();
@@ -139,12 +144,15 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
             <>
               {/* Overlay zoom controls */}
               <div style={{ position: 'absolute', bottom: '2rem', display: 'flex', gap: '0.5rem', background: 'var(--surface-color)', padding: '0.5rem', borderRadius: 'var(--border-radius-lg)', boxShadow: 'var(--shadow-lg)', zIndex: 10 }}>
-                <button className="btn-icon" onClick={() => zoomOut()} title="Zoom Out"><ZoomOut size={20} /></button>
-                <button className="btn-icon" onClick={() => resetTransform()} title="Reset Zoom"><RotateCcw size={20} /></button>
-                <button className="btn-icon" onClick={() => zoomIn()} title="Zoom In"><ZoomIn size={20} /></button>
+                <button className="btn-icon" onClick={() => zoomOut(0.25)} title="Zoom Out"><ZoomOut size={20} /></button>
+                <button className="btn-icon" onClick={() => resetTransform()} title="Reset Zoom (Fit to Screen)"><RotateCcw size={20} /></button>
+                <button className="btn-icon" onClick={() => zoomIn(0.25)} title="Zoom In"><ZoomIn size={20} /></button>
               </div>
 
-              <TransformComponent wrapperStyle={{ width: '100%', height: '100%' }}>
+              <TransformComponent 
+                wrapperStyle={{ width: '100%', height: '100%', overflow: 'hidden' }}
+                contentStyle={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
                 <img
                   src={currentPage.fullImageUrl}
                   alt={`Page ${currentPage.pageNumber}`}
@@ -155,10 +163,14 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
                   style={{ 
                     opacity: imageLoaded ? 1 : 0, 
                     transition: 'opacity 0.3s ease',
-                    maxWidth: '100vw', 
-                    maxHeight: '100vh', 
+                    maxWidth: '100%', 
+                    maxHeight: '100%', 
+                    width: 'auto',
+                    height: 'auto',
                     objectFit: 'contain',
-                    cursor: state.scale > 1 ? 'grab' : 'zoom-in'
+                    cursor: state.scale > 1 ? 'grab' : 'zoom-in',
+                    boxShadow: 'var(--shadow-lg)',
+                    userSelect: 'none'
                   }}
                   draggable="false"
                 />
