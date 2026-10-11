@@ -105,7 +105,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
         <TransformWrapper
           key={currentPage.pageNumber}
           initialScale={1}
-          minScale={0.3}
+          minScale={0.9}
           maxScale={5}
           centerOnInit={true}
           centerZoomedOut={true}
@@ -144,7 +144,7 @@ export const ReaderView: React.FC<ReaderViewProps> = ({ pages, initialPageNumber
             <>
               {/* Overlay zoom controls */}
               <div style={{ position: 'absolute', bottom: '2rem', display: 'flex', gap: '0.5rem', background: 'var(--surface-color)', padding: '0.5rem', borderRadius: 'var(--border-radius-lg)', boxShadow: 'var(--shadow-lg)', zIndex: 10 }}>
-                <button className="btn-icon" onClick={() => zoomOut(0.25)} title="Zoom Out"><ZoomOut size={20} /></button>
+                <button className="btn-icon" onClick={() => zoomOut(0.1)} title="Zoom Out"><ZoomOut size={20} /></button>
                 <button className="btn-icon" onClick={() => resetTransform()} title="Reset Zoom (Fit to Screen)"><RotateCcw size={20} /></button>
                 <button className="btn-icon" onClick={() => zoomIn(0.25)} title="Zoom In"><ZoomIn size={20} /></button>
               </div>
